@@ -1,0 +1,101 @@
+﻿{% extends "myapp/index.html" %}         
+
+
+{% block content %}
+<section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Profile <small class="text-muted">Welcome to Brainhub</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                                                    <button class="btn btn-white btn-icon btn-round d-none d-md-inline-block float-right m-l-10" type="button">
+                                <i class="zmdi zmdi-edit"></i>
+                            </button>
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i> Brainhub</a></li>
+                                                            <li class="breadcrumb-item">Admin</li>
+                                                                                        <li class="breadcrumb-item active">Profile</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+    <div class="row clearfix profile-page">
+        <div class="col-lg-4 col-md-12">
+            <div class="card profile-header">
+                <div class="body text-center">
+                    <div class="profile-image"> <img src="{{ aid.pic.url }}" alt=""> </div>
+                    <div>
+                        <h4 class="m-b-0"><strong>{{aid.user_name}}</strong></h4>
+                        <span class="job_post">Admin</span>
+                        <p>{{contact_no}}</p>
+                    </div>
+                    
+                </div>                    
+            </div>                               
+                           
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="card">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#Account">Account</a></li>                        
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane body active" id="about">
+                        <p>Our name Brainhub is coined from the word Learn in Vernacular Languages - Brainhub teaches students in the user's native language. Years of research have indicated that students learn the most difficult concepts easily when explained in a language they most understand and with images, examples, and practical insights. Each of the subjects we teach at Brainhub is offered in vernacular languages, have perfect examples and lots of practical insights and are taught by experts in their fields.</p>
+                        <hr>
+                        
+                    </div>
+                    <div class="tab-pane body" id="Account">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Email" value={{uid.email}} readonly disabled>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Current Password">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="New Password">
+                        </div>
+                        <button class="btn btn-info btn-round">Save Changes</button>
+                        <hr>
+                    <form action="{% url 'profile' %}" method="POST" enctype="multipart/form-data">
+                         {% csrf_token %}
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="user name" name="user_name" value={{ aid.user_name}}>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="ContactNo" name="contact_no" value={{aid.contact_no}}>
+                                </div>
+                            </div>                                    
+                                <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="file" class="form-control" name="pic">
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-primary btn-round">Save Changes</button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>                        
+                </div>
+            </div>              
+        </div>
+    </div>
+
+            </div>
+</section>
+{% endblock %}
+        

@@ -1,0 +1,55 @@
+﻿{%extends "myapp/learner_index.html"%}
+
+{% block content %}
+<section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>All <small class="text-muted">Welcome to Brainhub</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                                                    <button class="btn btn-white btn-icon btn-round d-none d-md-inline-block float-right m-l-10" type="button">
+                                <i class="zmdi zmdi-plus"></i>
+                            </button>
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i> Oreo</a></li>
+                                                            <li class="breadcrumb-item">Departments</li>
+                                                                                        <li class="breadcrumb-item active">All</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+    <div class="row clearfix">
+        {% for c in course_id %}
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card project_widget">
+                <div class="pw_img">
+                    <img class="img-fluid" src="{{c.course_pic.url}}">
+                </div>
+                <div class="pw_content">
+                    <div class="pw_header">
+                        <h6>{{c.course_name}}</h6>
+                    </div>
+                    <div class="pw_meta">
+                        <p>{{c.fees}}</p>
+                        <a href="{% url 'course_enroll' pk=c.id %}" class="btn btn-primary btn-simple btn-round">More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        
+        
+        
+    </div>
+
+            </div>
+</section>
+{% endblock %}
+              

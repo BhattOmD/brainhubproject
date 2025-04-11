@@ -1,0 +1,111 @@
+﻿{% extends 'myapp/index.html' %}
+
+{% block content %}
+<section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Edit company <small class="text-muted">Welcome to Brainhub</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i> Brainhub</a></li>
+                                                            <li class="breadcrumb-item">Company</li>
+                                                            <li class="breadcrumb-item active">Edit Company</li>
+                                                            <li class="breadcrumb-item active">Edit Company</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">                
+                
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12">\
+            {% if s_msg %}
+            <div class="alert alert-success" role="alert">
+                {{s_msg}}
+              </div>
+              {% endif %}
+            <div class="card">
+                <div class="header">
+                    <h2><strong>Edit</strong> Company<small>Description text here...</small> </h2>
+                    <ul class="header-dropdown">                            
+                        <li class="remove">
+                            <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <form method="post" action="{% url 'update_company' %}" enctypepe="multipart/from-data">
+                {% csrf_token %}
+                    <div class="body">
+                        <input type="text" name="companyid" value="{{cpid.id}}"/>
+                        <div class="row clearfix">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Company Name" name="company_name" value={{cpid.company_name}}>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="company email" name="company_email" value={{cpid.company_email}}>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="company phone no" name="company_phone_no" value={{cpid.company_phone_no}}>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="company Address" name="company_address" value={{cpid.company_address}}>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="company website" name="company_website" value={{cpid.company_website}}>
+                                </div>
+                            </div>
+
+                            
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    &nbps;&nbps;&nbps; Upload Company Logo :  
+                                    <input type="file" class="form-control" name="company_logo">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="type course disciptions here..." name="company_descriptions" value={{cpid.company_descriptions}}></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <input type="submit" class="btn btn-primary btn-round" value="submit">
+                                <button type="submit" class="btn btn-default btn-round btn-simple">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</section>
+{% endblock %}

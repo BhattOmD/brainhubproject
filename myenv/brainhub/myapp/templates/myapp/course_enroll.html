@@ -1,0 +1,144 @@
+﻿{% extends "myapp/learner_index.html" %}         
+
+
+{% block content %}
+<section class="content home">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12">
+                        <h2>Profile <small class="text-muted">Welcome to Brainhub</small></h2>
+                    </div>            
+                    <div class="col-lg-7 col-md-7 col-sm-12 text-right">
+                        
+                        
+                                                    <button class="btn btn-white btn-icon btn-round d-none d-md-inline-block float-right m-l-10" type="button">
+                                <i class="zmdi zmdi-edit"></i>
+                            </button>
+                        
+                        <ul class="breadcrumb float-md-right">
+                            <li class="breadcrumb-item"><a href="..\dashboard\index.html"><i class="zmdi zmdi-home"></i> Brainhub</a></li>
+                                                            <li class="breadcrumb-item">Admin</li>
+                                                                                        <li class="breadcrumb-item active">Profile</li>
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">      
+                          
+                
+    <div class="row clearfix profile-page">
+        <div class="col-lg-4 col-md-12">
+            <div class="card profile-header">
+                <div class="body text-center">
+                    <div class="profile-image"> <img src="{{course_id.course_pic.url }}" alt=""> </div>
+                    <div>
+                        <h4 class="m-b-0"><strong>{{course_id.course_name}}</strong></h4>
+                        <span class="job_post">{{course_id.category_name}}</span>
+                        <p>{{contact_no}}</p>
+
+                    </div>
+                    
+                </div>                    
+            </div>                               
+                           
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="card">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#about">About</a></li>
+                    
+                    <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#Account">Enroll Course</a></li>                        
+                </ul>
+                
+               
+                
+                <div class="tab-content" >
+
+                    <div class="tab-pane body active" id="about">
+
+                        <div class="col-md-6">
+                                Course Fees:  {{course_id.fees}}
+                        </div>
+                        <div class="col-md-6">
+                            Course Duration:  {{course_id.course_duration}}
+                        </div>
+                    <div class="col-md-6">
+                        Course Tutor Name:  {{course_id.course_tutor_name}}
+                    </div>  
+                        <hr>
+                        <p>{{course_id.course_descriptions}}</p>
+                        
+                        
+                    </div>
+                    <div class="tab-pane body" id="Account">
+                        <div class="form-group">
+                            {% if s_msg %}
+                            <div class="alert alert-success" role="alert">
+                                {{s_msg}}
+                              </div>
+                            <input type="text" class="form-control" placeholder="Email" value={{uid.email}} readonly disabled>
+                        </div>
+                        {% endif %}
+
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Current Password">
+                        </div>
+                        <hr>
+                    <form action="{% url 'learner_profile' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %} 
+                        <div class="row clearfix">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="user name" name="user_name" value={{lid.user_name}} readonly disabled>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="ContactNo" name="contact_no" value={{lid.contact_no}} readonly disabled>    
+                                     
+                                </div>
+                            </div>
+                            
+                                <hr>    
+                            <div  class="col-md-3">
+                                <h6>Course Lecture flow </h6>
+                                {% comment %} <button type="button" class="btn btn-info"><a href="" Download> </a></button> {% endcomment %}
+                                <a href="{{ course_id.course_lecture_flow.url  }}"  Download class="btn btn-round btn-warning"> Download</a>
+                                
+                            </div>   
+
+                            <div  class="col-md-3">
+                                <h6>Course Assignment</h6>
+                                {% comment %} <button type="button" class="btn btn-info"><a href="" Download> </a></button> {% endcomment %}
+                                <a href="{{ course_id.course_assignment.url  }}"  Download class="btn btn-round btn-warning"> Download</a>
+                            </div>
+
+                            <div  class="col-md-3">
+                                <h6>Course heandbook</h6>
+                                {% comment %} <button type="button" class="btn btn-info"><a href="" Download> </a></button> {% endcomment %}
+                                <a href="{{ course_id.course_heandbook.url  }}"  Download class="btn btn-round btn-warning"> Download</a>
+                            </div>
+
+                            <div  class="col-md-3">
+                                <h6>interview Qustions</h6>
+                                {% comment %} <button type="button" class="btn btn-info"><a href="" Download> </a></button> {% endcomment %}
+                                <a href="{{ course_id.course_interview_qustion.url  }}"  Download class="btn btn-round btn-warning"> Download</a>
+                            </div>
+                                                         
+
+                            <div class="col-md-12">
+                                <hr>
+                                <a href="{% url 'add_enroll_course' pk=course_id.id  %}" class="btn btn-round btn-warning">send enroll request</a>
+                            </div>
+                        </div>
+                    </form>
+                    </div>                        
+                </div>
+            </div>              
+        </div>
+    </div>
+
+            </div>
+</section>
+{% endblock %}
+        
